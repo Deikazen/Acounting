@@ -1,10 +1,15 @@
 const jwt = require('jsonwebtoken');
-const SECRET_KEY = 'secret_key_saya';
+require('dotenv').config();
+const secretKey = process.env.SECRET_KEY;
 
+
+if (!secretKey) {
+    console.log("secret key gaada");
+}
 
 //buat token
 function generateToken(user){
-    const token = jwt.sign({id : user._id , email : user.email}, SECRET_KEY, {expiresIn: '1h'} );
+    const token = jwt.sign({id : user._id , email : user.email}, secretKey, {expiresIn: '1h'} );
     return token ;
 
 }
@@ -22,7 +27,7 @@ function authenticationToken(req, res, next) {
     console.timeEnd('auth');
     const token = authHeader.split(' ')[1];
     try {
-    const decoded = jwt.verify(token, SECRET_KEY);
+    const decoded = jwt.verify(token, secretKey);
         req.userId = decoded.id;
 
         next();
