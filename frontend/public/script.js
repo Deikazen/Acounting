@@ -2,6 +2,8 @@
 
 const apiBaseUrl = 'https://website-pencatatan-keuangan.vercel.app/';
 
+let items;
+
 // Contoh penggunaan fetch
 fetch(apiBaseUrl)
   .then(response => response.json())
@@ -403,7 +405,7 @@ let rawValue = event.target.value.replace(/\D/g, "");
 event.target.dataset.rawValue = rawValue;
 
 // Format angka dengan titik
-// let formattedValue = new Intl.NumberFormat("id-ID").format(rawValue);
+let formattedValue = new Intl.NumberFormat("id-ID").format(rawValue);
 
 // Tampilkan hasil yang diformat di input
 event.target.value = formattedValue;
