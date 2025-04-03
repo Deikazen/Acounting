@@ -1,5 +1,12 @@
 
 
+const apiBaseUrl = 'https://website-pencatatan-keuangan.vercel.app/';
+
+// Contoh penggunaan fetch
+fetch(`${apiBaseUrl}/api/resource`)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error fetching data:', error));
 
 
 const NAVBAR = document.getElementById("main-navbar");
