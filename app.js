@@ -10,7 +10,10 @@ require('dotenv').config();
 const path = require('path');
 
 
-app.use(cors());
+app.use(cors({
+  origin: '*', // Mengizinkan semua origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+}));
 
 
 const port = process.env.PORT || 3000;
