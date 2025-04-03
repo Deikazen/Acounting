@@ -131,7 +131,7 @@ let currentBalance = 0 ;
 async function fetchBalance() {
     try {
         const token = localStorage.getItem("authToken");
-        const response = await fetch("http://localhost:3000/protected/get", {
+        const response = await fetch("https://website-pencatatan-keuangan.vercel.app//protected/get", {
             method:"GET",
             headers:{"Authorization": `Bearer ${token}` }
         });
@@ -220,7 +220,7 @@ const updatedData = {
 
 try {
     const token = localStorage.getItem("authToken");
-    const response = await fetch(`http://localhost:3000/protected/update/${transactionId}`, {
+    const response = await fetch(`https://website-pencatatan-keuangan.vercel.app//protected/update/${transactionId}`, {
     method: "PUT",
     headers: {
         "Content-Type": "application/json",
@@ -252,7 +252,7 @@ document.getElementById("register-form").addEventListener("submit", async functi
     const email = document.getElementById("register-email").value;
     const password = document.getElementById("register-password").value;
     
-    const response = await fetch("http://localhost:3000/user/register", {
+    const response = await fetch("https://website-pencatatan-keuangan.vercel.app//user/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password })
@@ -282,7 +282,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
     const password = document.getElementById("login-password").value;
     
 try {    
-    const response = await fetch("http://localhost:3000/user/login", {
+    const response = await fetch("https://website-pencatatan-keuangan.vercel.app//user/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
@@ -374,7 +374,7 @@ if (isNaN(amount) || amount <= 0) {
 const token = localStorage.getItem("authToken");
 
 try {
-    const response = await fetch("http://localhost:3000/protected/post", {
+    const response = await fetch("https://website-pencatatan-keuangan.vercel.app//protected/post", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -419,7 +419,7 @@ document.getElementById("confirmDelete").addEventListener("click", async functio
     
     try {
         const token = localStorage.getItem("authToken");
-        const response = await fetch(`http://localhost:3000/protected/delete/${transactionId}`, {
+        const response = await fetch(`https://website-pencatatan-keuangan.vercel.app//protected/delete/${transactionId}`, {
             method: "DELETE",
             headers: { "Authorization": `Bearer ${token}` }
         });

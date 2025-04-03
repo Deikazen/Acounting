@@ -38,5 +38,5 @@ app.use('/',itemRoute);
 
 
 app.listen(port, () => {
-  console.log(`Server berjalan di http://localhost:${port}`);
+  console.log(`Server berjalan di https://website-pencatatan-keuangan.vercel.app/:${port}`);
 });
