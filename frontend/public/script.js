@@ -131,6 +131,7 @@ function displayTransactionHistory(items) {
 let currentBalance = 0 ;
 
 async function fetchBalance() {
+    console.log(data); /// debuggggggggggggggggggggggggggggggggggggggggggggggggggggg
     try {
         const token = localStorage.getItem("authToken");
         const response = await fetch("https://website-pencatatan-keuangan.vercel.app/protected/get", {
@@ -405,7 +406,7 @@ let rawValue = event.target.value.replace(/\D/g, "");
 event.target.dataset.rawValue = rawValue;
 
 // Format angka dengan titik
-let formattedValue = new Intl.NumberFormat("id-ID").format(rawValue);
+// let formattedValue = new Intl.NumberFormat("id-ID").format(rawValue);
 
 // Tampilkan hasil yang diformat di input
 event.target.value = formattedValue;
