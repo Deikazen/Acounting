@@ -6,12 +6,12 @@ const app = express();
 const userRouter = require('./route/userRouter');
 const itemRoute = require('./route/itemRoute');
 const mongoose = require('./config/db');
+require('dotenv').config();
 
 app.use(cors());
 
 
-
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use('/user', userRouter);
