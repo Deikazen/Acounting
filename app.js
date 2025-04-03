@@ -13,6 +13,15 @@ app.use(cors());
 
 const port = process.env.PORT || 3000;
 
+// Middleware untuk melayani file frontend
+app.use(express.static(path.join(__dirname, 'frontend/public')));
+
+// Route untuk menangani permintaan ke frontend
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend/public', 'index.html'));
+});
+
+
 app.get('/', (req, res) => {
   res.send('Welcome to the backend API!');
 });
