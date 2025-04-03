@@ -13,7 +13,7 @@ app.use(cors());
 
 const port = process.env.PORT || 3000;
 
-app.get('/login', (req, res) => {
+app.get('/', (req, res) => {
   res.send('Welcome to the backend API!');
 });
 
