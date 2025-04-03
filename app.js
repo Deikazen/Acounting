@@ -7,6 +7,8 @@ const userRouter = require('./route/userRouter');
 const itemRoute = require('./route/itemRoute');
 const mongoose = require('./config/db');
 require('dotenv').config();
+const path = require('path');
+
 
 app.use(cors());
 
