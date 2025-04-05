@@ -1,6 +1,6 @@
 
 
-const apiBaseUrl = 'https://website-pencatatan-keuangan.vercel.app/';
+const apiBaseUrl = 'http://localhost:3000';
 
 
 

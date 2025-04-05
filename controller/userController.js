@@ -30,7 +30,7 @@ exports.registerUser = async (req, res) => {
       
        
         await user.save();
-        res.send('User registered');
+        res.json('User registered');
     }   catch  {
         res.status(500).send("Ada kesalahan !");
     }
