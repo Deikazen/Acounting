@@ -8,7 +8,7 @@ const itemRoute = require('./route/itemRoute');
 const mongoose = require('./config/db');
 require('dotenv').config();
 const path = require('path');
-const apiBaseUrl = 'https://website-pencatatan-keuangan.vercel.app/';
+
 
 
 app.use(cors({
@@ -43,5 +43,5 @@ app.get('/api', (req, res) => {
 
 const PORT = 3000;
 app.listen(PORT, () => {
-  console.log(`Server berjalan di https://website-pencatatan-keuangan.vercel.app/:${PORT}`);
+  console.log(`Server berjalan di https://website-pencatatan-keuangan.vercel.app/`);
 });
