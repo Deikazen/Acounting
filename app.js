@@ -16,14 +16,20 @@ app.use(cors({
 }));
 
 
-const port = process.env.PORT || 3000;
+app.use(express.json());
+
+app.use('/user', userRouter);
+app.use('/',itemRoute);
+
+// const port = process.env.PORT || 3000;
+
 
 // Middleware untuk melayani file frontend
 app.use(express.static(path.join(__dirname, 'frontend/public')));
 
 // Route untuk menangani permintaan ke frontend
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'frontend/public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'frontend/public', 'index.html'));
 });
 
 
@@ -31,12 +37,10 @@ app.get('/api', (req, res) => {
   res.send('Welcome to the backend API!');
 });
 
-app.use(express.json());
-app.use('/user', userRouter);
-app.use('/',itemRoute);
 
 
 
-app.listen(port, () => {
-  console.log(`Server berjalan di https://website-pencatatan-keuangan.vercel.app/:${port}`);
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server berjalan di apiBaseUrl:${PORT}`);
 });

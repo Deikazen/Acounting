@@ -77,7 +77,9 @@ exports.getItems = async (req, res) => {
             } else {
                 totalBalance -= Number(item.amount);
             }
-        } )
+        } );
+        console.log("Items:", items);
+        console.log("Total Balance:", totalBalance);
         res.json({totalBalance,items} );
     } catch (error) {
         res.status(500).json({ message: 'Error calculating total balance ', error: error.message });

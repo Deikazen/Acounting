@@ -2,13 +2,16 @@
 
 const apiBaseUrl = 'https://website-pencatatan-keuangan.vercel.app/';
 
-let items;
 
-// Contoh penggunaan fetch
-fetch(apiBaseUrl)
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error('Error fetching data:', error));
+
+
+
+let items ;
+
+ fetch(apiBaseUrl)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error fetching data:', error));
 
 
 const NAVBAR = document.getElementById("main-navbar");
@@ -38,7 +41,8 @@ function showHomePage() {
     document.getElementById('home-button').classList.remove('d-none');
 
     document.getElementById("main-navbar").classList.remove("d-none");
-
+    
+    console.log("fecth balance dipanggil dari function showHomePage"); // debuggggggggggggggggggggggggggggggggggg
     fetchBalance();
 }
 function logout() {
@@ -128,18 +132,18 @@ function displayTransactionHistory(items) {
 }
 
 
-let currentBalance = 0 ;
-
+let currentBalance = 1000 ;
 async function fetchBalance() {
-    console.log(data); /// debuggggggggggggggggggggggggggggggggggggggggggggggggggggg
+    console.log("fetch balance dipagnggil dari auth"); /// debuggggggggggggggggggggggggggggggggggggggggggggggggggggg
     try {
         const token = localStorage.getItem("authToken");
-        const response = await fetch("https://website-pencatatan-keuangan.vercel.app/protected/get", {
+        const response = await fetch(`apiBaseUrl/protected/get`, {
             method:"GET",
             headers:{"Authorization": `Bearer ${token}` }
         });
 
         const data = await response.json();
+        console.log("API response items : ",data.items); // Menampilkan data di console debugggg
         if(response.ok){
             currentBalance = data.totalBalance;
             updateBalanceDisplay();
@@ -165,7 +169,7 @@ function handleUpdate(event) {
     console.log("handleUpdate dipanggil!", event); // debugging=====================================
 
     const transactionId = event.target.dataset.id; // Ambil ID transaksi dari atribut data-id
-    const transaction = items.find(item => item._id === transactionId); // Cari transaksi berdasarkan ID
+    const transaction = items.find(items => items._id === transactionId); // Cari transaksi berdasarkan ID
 
 
     // Isi form dengan data transaksi
@@ -223,7 +227,7 @@ const updatedData = {
 
 try {
     const token = localStorage.getItem("authToken");
-    const response = await fetch(`https://website-pencatatan-keuangan.vercel.app/protected/update/${transactionId}`, {
+    const response = await fetch(`apiBaseUrl/protected/update/${transactionId}`, {
     method: "PUT",
     headers: {
         "Content-Type": "application/json",
@@ -255,7 +259,7 @@ document.getElementById("register-form").addEventListener("submit", async functi
     const email = document.getElementById("register-email").value;
     const password = document.getElementById("register-password").value;
     
-    const response = await fetch("https://website-pencatatan-keuangan.vercel.app/user/register", {
+    const response = await fetch(`apiBaseUrl/user/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password })
@@ -285,7 +289,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
     const password = document.getElementById("login-password").value;
     
 try {    
-    const response = await fetch("https://website-pencatatan-keuangan.vercel.app/user/login", {
+    const response = await fetch(`apiBaseUrl/user/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
@@ -304,6 +308,7 @@ try {
 
 
         fetchBalance();
+        console.log("fetch balance dipanggil dari login-form "); // debugggggggggggggggg
     } else {
         if (data.error === "EMAIL_NOT_FOUND") { // changed
             showNotification("Email tidak ditemukan!", "error"); // changed
@@ -330,6 +335,16 @@ category.innerHTML = "";
 const options = type === "income"
     ? ["Gaji", "Bonus", "Pendapatan Investasi", "Hasil Penjualan", "Hadiah", "Lain-lain"]
     : ["Makanan", "Transportasi", "Hiburan", "Kesehatan", "Pendidikan", "Lain-lain"];
+
+    console.log({                      // debugggggggggggggggggggggggggggggggg
+        amount,
+        type,
+        category,
+        description
+      });
+      
+console.log("Nilai type:", document.getElementById("type").value); // debuggggggggggggggggggggggggggggggggggggg
+
 
 
 options.forEach(opt => {
@@ -377,7 +392,7 @@ if (isNaN(amount) || amount <= 0) {
 const token = localStorage.getItem("authToken");
 
 try {
-    const response = await fetch("https://website-pencatatan-keuangan.vercel.app/protected/post", {
+    const response = await fetch(`apiBaseUrl/protected/post`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -422,7 +437,7 @@ document.getElementById("confirmDelete").addEventListener("click", async functio
     
     try {
         const token = localStorage.getItem("authToken");
-        const response = await fetch(`https://website-pencatatan-keuangan.vercel.app/protected/delete/${transactionId}`, {
+        const response = await fetch(`apiBaseUrl/protected/delete/${transactionId}`, {
             method: "DELETE",
             headers: { "Authorization": `Bearer ${token}` }
         });

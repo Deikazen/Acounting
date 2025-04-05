@@ -3,9 +3,7 @@ require('dotenv').config();
 const secretKey = process.env.SECRET_KEY;
 
 
-if (!secretKey) {
-    console.log("secret key gaada");
-}
+
 
 //buat token
 function generateToken(user){
