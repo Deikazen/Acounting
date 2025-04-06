@@ -44,5 +44,5 @@ app.get('/api', (req, res) => {
 
 const PORT = 3000;
 app.listen(PORT, () => {
-  console.log(`Server berjalan di https://website-pencatatan-keuangan.vercel.app`);
+  console.log(`Server berjalan di https://acounting-digital.vercel.app`);
 });
