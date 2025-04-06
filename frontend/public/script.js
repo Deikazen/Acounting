@@ -14,6 +14,7 @@ let items ;
     .then(data => console.log(data))
     .catch(error => console.error('Error fetching data:', error));
 
+    console.log("link : ",apiBaseUrl);
 
 const NAVBAR = document.getElementById("main-navbar");
 
