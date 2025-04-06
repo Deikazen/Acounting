@@ -1,6 +1,6 @@
 
 
-const apiBaseUrl = 'https://website-pencatatan-keuangan.vercel.app/';
+const apiBaseUrl = 'website-pencatatan-keuangan.vercel.app';
 
 
 
@@ -131,9 +131,18 @@ function displayTransactionHistory(items) {
 
 }
 
+function showSPinner(){
+    document.getElementById('loading').style.display = 'block';
+}
+
+function hideSpinner(){
+    document.getElementById('loading').style.display = 'none';
+}
+
 
 let currentBalance = 1000 ;
 async function fetchBalance() {
+    showSPinner();
     console.log("fetch balance dipagnggil dari auth"); /// debuggggggggggggggggggggggggggggggggggggggggggggggggggggg
     try {
         const token = localStorage.getItem("authToken");
@@ -156,6 +165,7 @@ async function fetchBalance() {
     } catch(error) {
         console.error("Error : ", error);
     }
+    hideSpinner();
 }
 
 
@@ -166,6 +176,7 @@ const updateModal = new bootstrap.Modal(updateModalElement);
 
 
 function handleUpdate(event) {
+    showSPinner();
     console.log("handleUpdate dipanggil!", event); // debugging=====================================
 
     const transactionId = event.target.dataset.id; // Ambil ID transaksi dari atribut data-id
@@ -182,9 +193,11 @@ function handleUpdate(event) {
     // Tampilkan modal form update
     
     updateModal.show(); // Tampilkan modal
+    hideSpinner();
 }
 
 function handleDelete(event) {
+    showSPinner();
     console.log("Tombol delete ditekan", event); // debugging ================
     const transactionId = event.target.dataset.id; // Ambil ID transaksi dari atribut data-id
 
@@ -196,6 +209,7 @@ function handleDelete(event) {
      // Tampilkan modal konfirmasi
     const deleteModal = new bootstrap.Modal(deleteModalElement);
     deleteModal.show();
+    hideSpinner();
 }
 
 function togglePassword(inputId, toggleElement) {
@@ -214,6 +228,7 @@ function togglePassword(inputId, toggleElement) {
 
 // Kirim data  ke backend
 document.getElementById("update-form").addEventListener("submit", async function(event) {
+    showSPinner();
 event.preventDefault();
 
 const transactionId = document.getElementById("transaction-id").value; // Ambil ID transaksi
@@ -248,12 +263,14 @@ try {
 } catch (error) {
 console.error("Error update transaksi:", error);
 }   
+hideSpinner();
 });    
 
 
 
 
 document.getElementById("register-form").addEventListener("submit", async function(event) {
+    showSPinner();
     event.preventDefault();
     const username = document.getElementById("register-username").value;
     const email = document.getElementById("register-email").value;
@@ -280,10 +297,11 @@ document.getElementById("register-form").addEventListener("submit", async functi
         }
 
         }
-    
+    hideSpinner();
 });    
 
 document.getElementById("login-form").addEventListener("submit", async function(event) {
+    showSPinner();
     event.preventDefault();
     const email = document.getElementById("login-email").value;
     const password = document.getElementById("login-password").value;
@@ -318,11 +336,11 @@ try {
             showNotification("Login gagal: " + data.msg, "error"); // changed
         }
     }
+    hideSpinner();
 } catch (error) {
     
     showNotification("Terjadi kesalahan saat menghubungi server." + error.message, "error");
 }
-
 
 });
 
@@ -376,6 +394,7 @@ document.getElementById("update-type").addEventListener("change", function() {
 
 
 document.getElementById("finance-form").addEventListener("submit", async function(event) {
+    showSPinner();
 event.preventDefault();
 const amountRaw = document.getElementById("amount").dataset.rawValue;
 const amount = parseFloat(amountRaw);
@@ -413,6 +432,7 @@ if (response.ok) {
 console.error("Gagal mengirim transaksi ke backend:", error);
 showNotification("Terjadi kesalahan saat menghubungi server / Masukkan Type.", "error");
 }
+hideSpinner();
 });
 
 document.getElementById("amount").addEventListener("input", function(event) {

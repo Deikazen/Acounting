@@ -207,6 +207,11 @@
  
 }
 
+#loading {
+  position:fixed;
+  justify-content: center;
+}
+
 @media (max-width : 768px) {
   .custom-heading{
     font-size: 40px;
