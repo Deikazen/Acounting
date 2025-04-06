@@ -1,6 +1,6 @@
 
 
-const apiBaseUrl = 'website-pencatatan-keuangan.vercel.app';
+const apiBaseUrl = 'website-pencatatan-keuangan.vercel.app/';
 
 
 
