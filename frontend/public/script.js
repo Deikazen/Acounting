@@ -308,7 +308,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
     const password = document.getElementById("login-password").value;
     
 try {    
-    const response = await fetch(`https://website-pencatatan-keuangan.vercel.app//user/login`, {
+    const response = await fetch(`${apiBaseUrl}/user/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
