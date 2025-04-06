@@ -8,7 +8,7 @@ const itemRoute = require('./route/itemRoute');
 const mongoose = require('./config/db');
 require('dotenv').config();
 const path = require('path');
-import { Analytics } from "@vercel/analytics/next";
+import { Inject } from "@vercel/analytics";
 
 
 
