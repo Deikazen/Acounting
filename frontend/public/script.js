@@ -1,7 +1,6 @@
 
 
 
-console.log("link : ",apiBaseUrl);
 
 
 
@@ -9,7 +8,7 @@ console.log("link : ",apiBaseUrl);
 
 let items ;
 
- fetch(`${apiBaseUrl}/user/login`)
+ fetch(`https://website-pencatatan-keuangan.vercel.app/user/login`)
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.error('Error fetching data:', error));
@@ -309,7 +308,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
     const password = document.getElementById("login-password").value;
     
 try {    
-    const response = await fetch(`${apiBaseUrl}/user/login`, {
+    const response = await fetch(`https://website-pencatatan-keuangan.vercel.app//user/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
