@@ -8,7 +8,7 @@ const apiBaseUrl = 'https://acounting-digital.vercel.app/' ;
 
 let items ;
 
- fetch(`${apiBaseUrl}`)
+ fetch(apiBaseUrl)
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.error('Error fetching data:', error));
